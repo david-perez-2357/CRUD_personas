@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-min-width: 600px; -fx-min-height: 460px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crud_personas.PeopleController">
+   <children>
+      <TableView id="tablaPersonas" prefHeight="360.0" prefWidth="580.0">
+        <columns>
+          <TableColumn id="columnName" fx:id="columnName" prefWidth="75.0" text="Nombre" />
+          <TableColumn id="columnSurname" fx:id="columnSurname" prefWidth="75.0" text="Apellidos" />
+            <TableColumn id="columnAge" fx:id="columnAge" prefWidth="75.0" text="Edad" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#showAddPersonModal" prefHeight="39.0" prefWidth="97.0" text="Añadir" />
+            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="99.0" text="Modificar" />
+            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="101.0" text="Eliminar" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
