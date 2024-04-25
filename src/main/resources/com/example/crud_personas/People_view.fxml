@@ -11,7 +11,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-min-width: 600px; -fx-min-height: 460px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crud_personas.PeopleController">
    <children>
-      <TableView id="tablaPersonas" prefHeight="360.0" prefWidth="580.0">
+      <TableView id="tablaPersonas" fx:id="peopleTable" onMouseClicked="#selectPerson" prefHeight="360.0" prefWidth="580.0">
         <columns>
           <TableColumn id="columnName" fx:id="columnName" prefWidth="75.0" text="Nombre" />
           <TableColumn id="columnSurname" fx:id="columnSurname" prefWidth="75.0" text="Apellidos" />
@@ -23,9 +23,9 @@
       </TableView>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#showAddPersonModal" prefHeight="39.0" prefWidth="97.0" text="Añadir" />
-            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="99.0" text="Modificar" />
-            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="101.0" text="Eliminar" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#showAddPersonModal" prefHeight="39.0" prefWidth="97.0" text="Añadir" />
+            <Button fx:id="editButton" disable="true" mnemonicParsing="false" onAction="#editPerson" prefHeight="37.0" prefWidth="99.0" text="Modificar" />
+            <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" onAction="#deletePerson" prefHeight="38.0" prefWidth="101.0" text="Eliminar" />
          </children>
       </HBox>
    </children>
