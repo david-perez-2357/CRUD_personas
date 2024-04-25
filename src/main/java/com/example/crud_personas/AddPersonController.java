@@ -1,20 +1,22 @@
 package com.example.crud_personas;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.util.Objects;
 
 public class AddPersonController {
     @FXML
-    private TextField nameInput;
+    public Label title;
     @FXML
-    private TextField surnamesInput;
+    public TextField nameInput;
     @FXML
-    private Slider ageSlider;
+    public TextField surnamesInput;
     @FXML
-    private Button addButton;
+    public Slider ageSlider;
+    @FXML
+    public Button addButton;
     @FXML
     private Label ageLabel;
 
@@ -31,16 +33,36 @@ public class AddPersonController {
             return;
         }
 
-        // Add the person
-        PeopleApp.addPerson(nameInput.getText(), surnamesInput.getText(), (int) ageSlider.getValue());
+        String message = "";
 
-        // Empty the inputs
-        nameInput.clear();
-        surnamesInput.clear();
+        if (Objects.equals(addButton.getText(), "Añadir")) {
+            // Add the person
+            PeopleApp.addPerson(nameInput.getText(), surnamesInput.getText(), (int) ageSlider.getValue());
+            message = "Persona añadida correctamente";
+
+            // Empty the inputs
+            nameInput.clear();
+            surnamesInput.clear();
+        } else {
+            // Edit the person
+            PeopleApp.editPerson(nameInput.getText(), surnamesInput.getText(), (int) ageSlider.getValue());
+
+            // Close the window
+            ((Stage) addButton.getScene().getWindow()).close();
+
+            message = "Persona editada correctamente";
+        }
+
+        // Show a success message
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
-    private void ageSliderChange() {
+    public void ageSliderChange() {
         ageSlider.setValue(Math.round(ageSlider.getValue()));
         ageLabel.setText(String.valueOf((int) ageSlider.getValue()));
     }
