@@ -4,10 +4,8 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import javafx.fxml.FXML;
 
 import java.io.IOException;
 
@@ -40,6 +38,22 @@ public class PeopleApp extends Application {
 
         // Add the new person to the list
         listaPersonas.add(persona);
+    }
+
+    public static void editPerson(String name, String surnames, int age) {
+        // Edit a person in the table
+        TableView tablaPersonas = (TableView) scene.lookup("#tablaPersonas");
+
+        // Get the selected person
+        Person selectedPerson = (Person) tablaPersonas.getSelectionModel().getSelectedItem();
+
+        // Update the person
+        selectedPerson.setName(name);
+        selectedPerson.setSurname(surnames);
+        selectedPerson.setAge(age);
+
+        // Refresh the table
+        tablaPersonas.refresh();
     }
 
     public static void main(String[] args) {
