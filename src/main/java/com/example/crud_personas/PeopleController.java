@@ -3,6 +3,7 @@ package com.example.crud_personas;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,7 +15,13 @@ public class PeopleController {
     private Button addButton;
 
     @FXML
-    public TableView<Person> tablaPersonas;
+    private Button deleteButton;
+
+    @FXML
+    private Button editButton;
+
+    @FXML
+    public TableView<Person> peopleTable;
 
     @FXML
     public TableColumn<Person, String> columnName;
@@ -49,4 +56,77 @@ public class PeopleController {
         }
     }
 
+    @FXML
+    private void deletePerson() {
+        // Get the selected person
+        Person selectedPerson = peopleTable.getSelectionModel().getSelectedItem();
+
+        // Remove the selected person from the table
+        peopleTable.getItems().remove(selectedPerson);
+
+        // Disable the delete and edit buttons
+        deleteButton.setDisable(true);
+        editButton.setDisable(true);
+
+        // Show alert
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Éxito");
+        alert.setHeaderText(null);
+        alert.setContentText("Persona eliminada correctamente");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void editPerson() {
+        // Get the selected person
+        Person selectedPerson = peopleTable.getSelectionModel().getSelectedItem();
+
+        try {
+            // Load the FXML file of the new window
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddPerson.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Editar persona");
+
+            // Create the scene and set it in the new stage
+            Scene scene = new Scene(fxmlLoader.load(), 250, 400);
+
+            // Get the controller
+            AddPersonController controller = fxmlLoader.getController();
+
+            // Set the selected person data in the inputs
+            controller.nameInput.setText(selectedPerson.getName());
+            controller.surnamesInput.setText(selectedPerson.getSurname());
+            controller.ageSlider.setValue(selectedPerson.getAge());
+
+            controller.title.setText("Editar persona");
+            controller.addButton.setText("Editar");
+
+            controller.ageSliderChange();
+
+            // Set the selected person in the controller
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void selectPerson() {
+        // Get the selected person
+        Person selectedPerson = peopleTable.getSelectionModel().getSelectedItem();
+
+        // Check if the selected person is null
+        if (selectedPerson == null) {
+            // Disable the delete and edit buttons
+            deleteButton.setDisable(true);
+            editButton.setDisable(true);
+            return;
+        }
+
+        // Enable the delete and edit buttons
+        deleteButton.setDisable(false);
+        editButton.setDisable(false);
+    }
 }
