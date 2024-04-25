@@ -8,10 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox alignment="TOP_CENTER" fx:controller="com.example.crud_personas.AddPersonController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="249.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="249.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crud_personas.AddPersonController">
    <children>
-      <Label prefHeight="36.0" prefWidth="169.0" text="Añadir Persona" textAlignment="CENTER">
+      <Label id="title" fx:id="title" prefHeight="36.0" prefWidth="169.0" text="Añadir Persona" textAlignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>
@@ -19,13 +18,13 @@
       <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="229.0">
          <children>
             <Label text="Nombre" />
-            <TextField fx:id="nameInput" />
+            <TextField id="nameInput" fx:id="nameInput" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="229.0">
          <children>
             <Label text="Apellidos" />
-            <TextField fx:id="surnamesInput" />
+            <TextField id="surnameInput" fx:id="surnamesInput" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="229.0">
@@ -33,17 +32,17 @@
             <HBox prefHeight="20.0" prefWidth="229.0" spacing="20.0">
                <children>
                   <Label text="Edad" />
-                  <Label text="1" fx:id="ageLabel">
+                  <Label fx:id="ageLabel" text="1">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Slider max="110.0" min="1.0" minorTickCount="10" fx:id="ageSlider" onMouseDragged="#ageSliderChange" showTickLabels="true" showTickMarks="true" />
+            <Slider id="ageSlider" fx:id="ageSlider" max="110.0" min="1.0" minorTickCount="10" onMouseDragged="#ageSliderChange" showTickLabels="true" showTickMarks="true" />
          </children>
       </VBox>
-      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="104.0" text="Añadir" fx:id="addButton" onAction="#addPersonButton">
+      <Button id="addButton" fx:id="addButton" mnemonicParsing="false" onAction="#addPersonButton" prefHeight="40.0" prefWidth="104.0" text="Añadir">
          <font>
             <Font size="15.0" />
          </font>
