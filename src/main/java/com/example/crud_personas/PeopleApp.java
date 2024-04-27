@@ -38,6 +38,9 @@ public class PeopleApp extends Application {
 
         // Add the new person to the list
         listaPersonas.add(persona);
+
+        // Open the window
+        ((Stage) scene.getWindow()).show();
     }
 
     public static void editPerson(String name, String surnames, int age) {
@@ -54,6 +57,9 @@ public class PeopleApp extends Application {
 
         // Refresh the table
         tablaPersonas.refresh();
+
+        // Open the window
+        ((Stage) scene.getWindow()).show();
     }
 
     public static void main(String[] args) {

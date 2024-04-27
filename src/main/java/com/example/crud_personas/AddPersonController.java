@@ -47,9 +47,6 @@ public class AddPersonController {
             // Edit the person
             PeopleApp.editPerson(nameInput.getText(), surnamesInput.getText(), (int) ageSlider.getValue());
 
-            // Close the window
-            ((Stage) addButton.getScene().getWindow()).close();
-
             message = "Persona editada correctamente";
         }
 
@@ -59,6 +56,9 @@ public class AddPersonController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+
+        // Close the window
+        ((Stage) addButton.getScene().getWindow()).close();
     }
 
     @FXML

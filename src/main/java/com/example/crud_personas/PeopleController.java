@@ -47,15 +47,18 @@ public class PeopleController {
     @FXML
     private void showAddPersonModal() {
         try {
-            // Cargar el archivo FXML de la nueva ventana
+            // Load the FXML file of the new window
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddPerson.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Añadir persona");
 
-            // Crear la escena y establecerla en el nuevo escenario
+            // Create the scene and set it in the new stage
             Scene scene = new Scene(fxmlLoader.load(), 250, 400);
             stage.setScene(scene);
             stage.show();
+
+            // Close the current window
+            ((Stage) addButton.getScene().getWindow()).close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -111,6 +114,9 @@ public class PeopleController {
             // Set the selected person in the controller
             stage.setScene(scene);
             stage.show();
+
+            // Close the current window
+            ((Stage) addButton.getScene().getWindow()).close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
