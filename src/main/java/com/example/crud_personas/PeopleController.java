@@ -1,16 +1,18 @@
 package com.example.crud_personas;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 
 public class PeopleController {
+    @FXML
+    private TextField searchInput;
+
     @FXML
     private Button addButton;
 
@@ -31,6 +33,9 @@ public class PeopleController {
 
     @FXML
     public TableColumn<Person, Integer> columnAge;
+
+
+    private ObservableList<Person> peopleRemoved = FXCollections.observableArrayList();
 
 
     public void configureTableColumns() {
@@ -128,5 +133,32 @@ public class PeopleController {
         // Enable the delete and edit buttons
         deleteButton.setDisable(false);
         editButton.setDisable(false);
+    }
+
+    @FXML
+    private void searchByName() {
+        // Get the search input
+        String search = searchInput.getText().toLowerCase();
+
+        // Filter the items based on the search criteria
+        ObservableList<Person> filteredList = FXCollections.observableArrayList();
+
+        // Add the removed people back to the list
+        ObservableList<Person> peopleList = peopleTable.getItems();
+        peopleList.addAll(peopleRemoved);
+        peopleRemoved.clear();
+
+        for (Person person : peopleTable.getItems()) {
+            // Check if the name contains the search input
+            if (person.getName().toLowerCase().contains(search)) {
+                filteredList.add(person);
+            }else {
+                peopleRemoved.add(person);
+            }
+        }
+
+        // Clear the current items and add the filtered ones
+        peopleTable.getItems().clear();
+        peopleTable.getItems().addAll(filteredList);
     }
 }
